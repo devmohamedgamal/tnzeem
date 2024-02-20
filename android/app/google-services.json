@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "941294669189",
+    "project_id": "tnzeem-eb23b",
+    "storage_bucket": "tnzeem-eb23b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941294669189:android:bec6f4361ec65b486ec8ec",
+        "android_client_info": {
+          "package_name": "com.example.tnzeem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941294669189-eubckhqjmot4dr36t9kqqjfs1tcmuofa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCPVRKGAX_6LELXdRT9tUjoqH-CZRQnCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941294669189-eubckhqjmot4dr36t9kqqjfs1tcmuofa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
