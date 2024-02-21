@@ -7,13 +7,9 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Main'),
-        centerTitle: true,
-        backgroundColor: Colors.blue,
-      ),
-      body: const HomeViewBody(),
+    return const Scaffold(
+      backgroundColor: Color(0xff1c2757),
+      body: HomeViewBody(),
     );
   }
 }
