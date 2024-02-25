@@ -19,4 +19,14 @@ class FirebaseFuncCubit extends Cubit<FirebaseFuncState> {
       emit(FirebaseFuncSuccess(startDate: success));
     });
   }
+
+  Future<void> getWorkDate({required String uid}) async {
+    emit(GetWorkDateLoading());
+    var result = await firebaseFuncRepoImpl.getAllWorkDate(uid: uid);
+    result.fold((failure) {
+      emit(GetWorkDateFailure(errMessage: failure));
+    }, (success) {
+      emit(GetWorkDateSuccess(allWorkDate: success));
+    });
+  }
 }

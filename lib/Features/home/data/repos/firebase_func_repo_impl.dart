@@ -22,22 +22,20 @@ class FirebaseFuncRepoImpl implements FirebaseFuncRepo {
     }
   }
 
-  // @override
-  // Future<Either<String, String>> addEndDate(
-  //     {required String uid, required DateTime date}) async {
-  //   try {
-  //     CollectionReference userTimer =
-  //         FirebaseFirestore.instance.collection('Timer');
-  //     await userTimer.doc(uid).update({
-  //       'endIn': date,
-  //     });
-  //     return right('done');
-  //   } on FirebaseException catch (e) {
-  //     log(e.message!);
-  //     return left(e.message!);
-  //   } catch (e) {
-  //     log(e.toString());
-  //     return left(e.toString());
-  //   }
-  // }
+  @override
+  Future<Either<String, Map<String, dynamic>>> getAllWorkDate(
+      {required String uid}) async {
+    try {
+      DocumentSnapshot<Map<String, dynamic>> userDoc =
+          await FirebaseFirestore.instance.collection('Timer').doc(uid).get();
+      log(userDoc.data().toString());
+      return right(userDoc.data() ?? {});
+    } on FirebaseException catch (e) {
+      log(e.message!);
+      return left(e.message!);
+    } catch (e) {
+      log(e.toString());
+      return left(e.toString());
+    }
+  }
 }

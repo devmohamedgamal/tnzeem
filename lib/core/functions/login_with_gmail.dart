@@ -36,10 +36,11 @@ class Authentication {
               'email': user.email,
               'photoUrl': user.photoURL,
             });
-            await userTimer.doc(user.uid).update({
+            await userTimer.doc(user.uid).set({
               '${DateTime.now().year}:${DateTime.now().month}:${DateTime.now().day}':
                   {
                 'startIn': DateTime.now(),
+                'workHours': {},
               },
             });
           } catch (e) {
@@ -67,6 +68,7 @@ class Authentication {
               '${DateTime.now().year}:${DateTime.now().month}:${DateTime.now().day}':
                   {
                 'startIn': DateTime.now(),
+                'workHours': {},
               },
             });
           }
@@ -105,10 +107,22 @@ class Authentication {
     Map<String, dynamic> userDoc = documentSnapshot.data() ?? {};
     Duration difference = DateTime.now().difference(startIn);
 
-    if (userDoc[date].containsKey('workHours')) {
-      List workHores = userDoc[date]['workHours'];
-      workHores.add(
-          '${difference.inHours}:${difference.inMinutes % 60}:${difference.inSeconds % 60}');
+    if (userDoc[date]['workHours']['h'] != null) {
+      int hours = userDoc[date]['workHours']['h'] + difference.inHours;
+      int minuts = userDoc[date]['workHours']['m'] + difference.inMinutes % 60;
+      int seconds;
+      if (userDoc[date]['workHours']['s'] + difference.inSeconds % 60 > 60) {
+        minuts += 1;
+        seconds =
+            userDoc[date]['workHours']['s'] + difference.inSeconds % 60 - 60;
+      } else {
+        seconds = userDoc[date]['workHours']['s'] + difference.inSeconds % 60;
+      }
+      Map<String, dynamic> workHores = {
+        'h': hours,
+        'm': minuts,
+        's': seconds,
+      };
       await userTimer.doc(user!.uid).update({
         '${DateTime.now().year}:${DateTime.now().month}:${DateTime.now().day}':
             {
@@ -123,8 +137,11 @@ class Authentication {
             {
           'startIn': startIn,
           'endIn': DateTime.now(),
-          'workHours':
-              '${difference.inHours}:${difference.inMinutes % 60}:${difference.inSeconds % 60}',
+          'workHours': {
+            "h": difference.inHours,
+            "m": difference.inMinutes % 60,
+            's': difference.inSeconds % 60,
+          },
         },
       });
     }

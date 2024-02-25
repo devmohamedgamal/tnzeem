@@ -18,3 +18,17 @@ final class FirebaseFuncSuccess extends FirebaseFuncState {
 
   FirebaseFuncSuccess({required this.startDate});
 }
+
+final class GetWorkDateLoading extends FirebaseFuncState {}
+
+final class GetWorkDateFailure extends FirebaseFuncState {
+  final String errMessage;
+
+  GetWorkDateFailure({required this.errMessage});
+}
+
+final class GetWorkDateSuccess extends FirebaseFuncState {
+  final Map<String,dynamic> allWorkDate;
+
+  GetWorkDateSuccess({required this.allWorkDate});
+}

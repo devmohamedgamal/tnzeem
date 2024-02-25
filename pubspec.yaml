@@ -31,7 +31,6 @@ dependencies:
   cloud_firestore: ^4.15.5
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
-  dio: ^5.4.1
   firebase_auth: ^4.17.4
   firebase_core: ^2.25.4
   flutter:
@@ -46,7 +45,6 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
